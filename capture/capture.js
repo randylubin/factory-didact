@@ -12,6 +12,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 .controller('CaptureCtrl', ['$scope', '$location', 'UserData', '$firebaseObject','$firebaseArray', '$document', function(scope, location, UserData, $firebaseObject, $firebaseArray, $document) {
 	scope.userData = UserData;
 	scope.actuals = [];
+	scope.smallPhoto = "none"
 	scope.userName = location.search().user
 
 	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/actuals");
@@ -95,7 +96,6 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	}
 
 	scope.saveFeedback = function(text){
-
 		var startTime = new Date();
 		scope.userData.capturedFeedback.push({
 			feedback: text,
@@ -103,6 +103,8 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 			time: startTime.toString(),
 			photo: scope.smallPhoto
 		})
+
+
 
 		scope.actuals.feedback = scope.userData.capturedFeedback;
 
