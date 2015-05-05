@@ -5,7 +5,7 @@
 			<div ng-repeat="learning in learnings">
 				<h1>{{learning.name}}</h1>
 				<div>{{learning.other}}</div>
-				<div ng-repeat="feedback in actuals.feedback">
+				<div ng-repeat="feedback in learning.actuals.feedback">
 					<p>{{feedback.feedback}}</p>
 				</div>
 			</div>
