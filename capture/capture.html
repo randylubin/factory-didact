@@ -1,0 +1,48 @@
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Actuals</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <label>Feedback</label>
+        <textarea class="form-control" rows="5" ng-model="feedback.text"></textarea> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <span ng-repeat="tag in tags">
+          <button class="btn btn-default" ng-class="{'btn-primary': tag.selected}" ng-click="tag.selected = !tag.selected">{{tag.name}}</button>  
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <button class="btn btn-large btn-default" ng-click="takePhoto()" ng-model="photo">
+          <span class="glyphicon glyphicon-camera upload"></span>
+        </button>
+        <input id="capturePhoto" type="file" accept="image/*;capture=camera" ng-hide="true" ng-model="largePhoto" onchange="angular.element(this).scope().processPhoto()">
+        {{photoFile}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="text-right">
+          <button class="btn btn-success" ng-click="saveFeedback(feedback.text)">Save Feedback</button>
+        </div>
+        <div class="text-right" ng-show="userData.capturedFeedback.length">
+          {{userData.capturedFeedback.length}} lessons learned
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="text-right" style="margin-top: 10px">
+          <button class="btn btn-default" ng-click="continue()">Continue to Survey</button>
+        </div>
+      </div>
+    </div>  
+  </div>
+

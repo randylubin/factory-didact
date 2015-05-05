@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>John Doe - Survey</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email Address</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" ng-model="survey.email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">How often would you use?</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="X times / month" ng-model="survey.usage">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Rating</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="1-10" ng-model="survey.rating">
+      </div>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-xs-12">
+      <label>Other Feedback</label>
+      <textarea class="form-control" rows="5" ng-model="survey.other"></textarea> 
+      <div class="text-right" style="margin-top: 10px">
+        <button class="btn btn-success" ng-click="postData()">Finish User</button>
+      </div>
+    </div>
+  </div>
+</div>
