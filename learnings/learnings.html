@@ -3,7 +3,11 @@
 		<div class="col-xs-12">
 			<h1>Learnings</h1>
 			<div ng-repeat="learning in learnings">
-				<div>{{learnings}}</div>
+				<h1>{{learning.name}}</h1>
+				<div>{{learning.other}}</div>
+				<div ng-repeat="actual in actuals">
+					<p>{{actual.feedback}}</p>
+				</div>
 			</div>
 		</div>
 	</div>
