@@ -13,6 +13,9 @@ angular.module('myApp.survey', ['firebase', 'ngRoute'])
 
 	scope.userData = UserData;
 
+	scope.userName = location.search().user;
+	scope.survey = {};
+
 
 	var refUser = new Firebase("https://didact.firebaseio.com/users/" + location.search().user);
 	  	// download the data into a local object
@@ -22,6 +25,7 @@ angular.module('myApp.survey', ['firebase', 'ngRoute'])
 	syncObject.$bindTo(scope, "survey");
 
 	scope.postData = function(){
+		scope.survey.name = scope.userName;
 		scope.userData.clear();
 		location.path('/home')
 	}

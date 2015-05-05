@@ -12,7 +12,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 .controller('CaptureCtrl', ['$scope', '$location', 'UserData', '$firebaseObject','$firebaseArray', '$document', function(scope, location, UserData, $firebaseObject, $firebaseArray, $document) {
 	scope.userData = UserData;
 	scope.actuals = [];
-	
+	scope.userName = location.search().user
 
 	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/actuals");
 	//scope.userData.capturedFeedback = $firebaseArray(refActuals);
