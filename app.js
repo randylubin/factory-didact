@@ -6,7 +6,6 @@ angular.module('myApp', [
   'ui.keypress',
   'ngRoute',
   'myApp.home',
-  'myApp.survey',
   'myApp.capture',
   'myApp.learnings'
 ]).
