@@ -1,11 +1,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1>Didact</h1>
+			<h1>Didact <span ng-show="observerName"> - {{observerName}}'s Notes</span></h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
+			<div class="form-group">
+		        <label>Your Name</label>
+		        <input type="text" class="form-control" id="" placeholder="Your Name" ng-model="observerName">
+		      </div>
 			<div class="form-group">
 		        <label for="exampleInputEmail1">User's Description</label>
 		        <input type="text" class="form-control" id="" placeholder="User's Name" ng-model="userName">

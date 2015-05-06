@@ -11,17 +11,17 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 
 .controller('CaptureCtrl', ['$scope', '$location', 'UserData', '$firebaseObject','$firebaseArray', '$document', function(scope, location, UserData, $firebaseObject, $firebaseArray, $document) {
 	scope.userData = UserData;
-	scope.actuals = [];
-	scope.smallPhoto = "none"
+	scope.syncedData = {};
+	scope.smallPhoto = null;
 	scope.userName = location.search().user
 
-	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/actuals");
+	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/capturedData");
 	//scope.userData.capturedFeedback = $firebaseArray(refActuals);
 
 	var syncObject = $firebaseObject(refActuals);
 	  // synchronize the object with a three-way data binding
 	  // click on `index.html` above to see it used in the DOM!
-	syncObject.$bindTo(scope, "actuals");
+	syncObject.$bindTo(scope, "syncedData");
 
 	scope.feedback = {};
 
@@ -80,6 +80,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		    canvas.width = scaledWidth;
 		    canvas.height = scaledHeight;
 		    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+		    ctx.rotate(90);
 		    return cb(canvas.toDataURL());
 		  };
 		  return img.src = URL.createObjectURL(imageSource);
@@ -95,20 +96,19 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		photo.click();
 	}
 
-	scope.saveFeedback = function(text){
+	scope.saveFeedback = function(){
+		var text = scope.feedback.text;
 		var startTime = new Date();
 		scope.userData.capturedFeedback.push({
 			feedback: text,
-			tags: scope.tags,
+			//tags: scope.tags,
 			time: startTime.toString(),
 			photo: scope.smallPhoto
 		})
 
+		scope.syncedData.feedback = scope.userData.capturedFeedback;
 
-
-		scope.actuals.feedback = scope.userData.capturedFeedback;
-
-		scope.feedback = {}
+		scope.feedback.text = ""
 		angular.forEach(scope.tags, function(tag){
 			tag.selected = false;
 		})
@@ -116,7 +116,9 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	}
 
 	scope.continue = function(){
-		location.path('/survey')
+		scope.syncedData.description = location.search().user;
+		scope.userData.clear();
+		location.path('/home')
 	}
 
 }]);

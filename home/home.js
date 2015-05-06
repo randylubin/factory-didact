@@ -11,11 +11,13 @@ angular.module('myApp.home', ['ngRoute'])
 
 .controller('HomeCtrl', ['$scope', '$location', 'UserData', function(scope, location, UserData) {
 	scope.userData = UserData;
+	scope.observerName = location.search().observer;
 
-	location.url(location.path())
+	location.search('user', null)
 
 	scope.newUser = function(){
 		location.search('user', scope.userName);
+		location.search('observer', scope.observerName)
 		location.path('/capture')
 	}
 

@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'firebase',
+  'ui.keypress',
   'ngRoute',
   'myApp.home',
   'myApp.survey',

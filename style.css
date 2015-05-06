@@ -20,3 +20,8 @@ button {
   padding-top: 30px;
   
 }
+
+.media-object {
+  height: 64px;
+  width: 64px;
+}

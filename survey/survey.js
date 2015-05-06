@@ -21,7 +21,6 @@ angular.module('myApp.survey', ['firebase', 'ngRoute'])
 	  	// download the data into a local object
 	var syncObject = $firebaseObject(refUser);
 	  // synchronize the object with a three-way data binding
-	  // click on `index.html` above to see it used in the DOM!
 	syncObject.$bindTo(scope, "survey");
 
 	scope.postData = function(){
