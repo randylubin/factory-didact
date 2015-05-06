@@ -89,7 +89,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		resizeImage(photo, function(image){
 			scope.smallPhoto = image;
 			scope.saveFeedback();
-			scope.smallPhoto = null;
+			scope.$apply();
 		});
 	}
 
@@ -100,29 +100,33 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 
 	scope.saveFeedback = function(){
 		var text = scope.feedback.text;
-		var startTime = new Date();
+		var photo = scope.smallPhoto;
 
-		if (!scope.syncedData.feedback) {
-			scope.syncedData.feedback = [];
+		if (text || photo) {
+			
+			var startTime = new Date();
+
+			if (!scope.syncedData.feedback) {
+				scope.syncedData.feedback = [];
+			}
+
+			if (!text && photo){
+				text = "Photo: ";
+			}
+
+			scope.syncedData.feedback.push({
+				feedback: text,
+				//tags: scope.tags,
+				time: startTime.toString(),
+				photo: photo
+			})
 		}
-
-		if (!text){
-			text = "Photo: ";
-		}
-
-		scope.syncedData.feedback.push({
-			feedback: text,
-			//tags: scope.tags,
-			time: startTime.toString(),
-			photo: scope.smallPhoto
-		})
-
-		//scope.syncedData.feedback = scope.userData.capturedFeedback;
 
 		scope.feedback.text = null
-		angular.forEach(scope.tags, function(tag){
-			tag.selected = false;
+			angular.forEach(scope.tags, function(tag){
+				tag.selected = false;
 		})
+		scope.smallPhoto = null;
 
 	}
 
