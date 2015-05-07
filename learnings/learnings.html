@@ -2,13 +2,19 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<h1>Learnings</h1>
-			<div ng-repeat="learning in learnings">
-				<h1>{{learning.name}}</h1>
-				<div>{{learning.other}}</div>
-				<div ng-repeat="feedback in learning.actuals.feedback">
-					<p>{{feedback.feedback}}</p>
-					<img class="img-responsive" src="{{feedback.photo}}">
-				</div>
+			<div ng-repeat="learning in learnings  | orderBy:'-capturedData.dateLastEdited'" ng-show="learning.capturedData.observer">
+				<h1>User: {{learning.capturedData.name}}</h1>
+				<h2>Observer: {{learning.capturedData.observer}}</h2>
+				<p>Rating: {{learnings.capturedData.rating}}</p>
+
+				<ul>
+					<li class="media" ng-repeat="feedback in learning.capturedData.feedback">						
+						{{feedback.feedback}}
+						<div><img ng-show="feedback.photo" class="media-object" src="{{feedback.photo}}"></div>
+						
+
+					</li>	
+				</ul>
 			</div>
 		</div>
 	</div>
