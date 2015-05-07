@@ -38,7 +38,7 @@
 				<ul>
 					<li ng-repeat="(key,val)  in learning.capturedData" ng-if="!(key === 'feedback' || key === 'User\'s Name' || key === 'name' || key === 'observer' || key === 'description' || key === 'dateLastEdited')">{{key}}: {{val}}</li>
 				</ul>
-
+				<h3 ng-if="learning.capturedData.feedback">Actuals:</h3>
 				<ul>
 					<li class="media" ng-repeat="feedback in learning.capturedData.feedback">						
 						{{feedback.feedback}}

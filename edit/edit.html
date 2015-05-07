@@ -1,10 +1,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="h1">Edit Survey</div>
+			<h1>Edit Survey</h1>
+			<h2>Fields:</h2>
+
 		</div>
 	</div>
-	<div class="row" ng-repeat="question in survey">
+
+	<div class="row">
+		<div class="col-xs-12">User's Name <small>(required)</small></div>
+	</div>
+
+	<div class="row" ng-repeat="question in survey" ng-if="!(question.question === 'User\'s Name')">
 		<div class="col-xs-12">
 			{{question.question}} <button class="btn btn-default btn-sm" ng-click="survey.$remove(question)">Delete</button>
 		</div>

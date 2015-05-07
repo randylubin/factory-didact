@@ -15,6 +15,10 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	scope.smallPhoto = null;
 	scope.userName = location.search().user
 
+	if (!location.search().observer) {
+		location.search('observer', 'Anonymous');
+	}
+
 	if (!location.search().user) {
 		var random = Math.floor(Math.random() * 1000000)
 		location.search('user', random);
