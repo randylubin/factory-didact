@@ -25,3 +25,8 @@ button {
   height: 64px;
   width: 64px;
 }
+
+img {
+  -webkit-transform: rotate(90deg) scale(0.75,0.75);
+  transform: rotate(90deg) scale(0.75,0.75);
+}

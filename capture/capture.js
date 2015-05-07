@@ -122,11 +122,13 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 			})
 		}
 
+		scope.syncedData.dateLastEdited = new Date().toString();
 		scope.feedback.text = null
 			angular.forEach(scope.tags, function(tag){
 				tag.selected = false;
 		})
 		scope.smallPhoto = null;
+		scope.syncedData = location.search().observer;
 
 	}
 
