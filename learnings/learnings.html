@@ -3,9 +3,9 @@
 		<div class="col-xs-12">
 			<h1>Learnings</h1>
 			<div ng-repeat="learning in learnings  | orderBy:'-capturedData.dateLastEdited'" ng-show="learning.capturedData.observer">
-				<h1>User: {{learning.capturedData.name}}</h1>
+				<h1>User: {{learning.capturedData.name}} <small ng-click="goToUser(learning.capturedData.description)">edit</small></h1>
 				<h2>Observer: {{learning.capturedData.observer}}</h2>
-				<p>Rating: {{learnings.capturedData.rating}}</p>
+				<p ng-show="learning.capturedData.rating">Rating: {{learning.capturedData.rating}}</p>
 
 				<ul>
 					<li class="media" ng-repeat="feedback in learning.capturedData.feedback">						

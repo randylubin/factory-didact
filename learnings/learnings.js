@@ -22,5 +22,10 @@ angular.module('myApp.learnings', ['firebase', 'ngRoute'])
 	  // click on `index.html` above to see it used in the DOM!
 	syncObject.$bindTo(scope, "learnings");
 
+	scope.goToUser = function(name) {
+		location.search('user', name)
+		location.path('/capture')
+	}
+
 
 }]);
