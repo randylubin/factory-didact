@@ -14,6 +14,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	scope.syncedData = {};
 	scope.smallPhoto = null;
 	scope.userName = location.search().user
+	scope.syncedData.description = location.search().user;
 
 	if (!location.search().observer) {
 		location.search('observer', 'Anonymous');
