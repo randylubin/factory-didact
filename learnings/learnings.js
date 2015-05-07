@@ -11,7 +11,7 @@ angular.module('myApp.learnings', ['firebase', 'ngRoute'])
 
 .controller('LearningsCtrl', ['$scope', '$location', 'UserData', '$firebaseObject','$firebaseArray', '$document', function(scope, location, UserData, $firebaseObject, $firebaseArray, $document) {
 	scope.userData = UserData;
-	scope.learnings = {};
+	scope.learnings = null;
 	
 
 	var ref = new Firebase("https://didact.firebaseio.com/users/");

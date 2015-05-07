@@ -7,7 +7,8 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.home',
   'myApp.capture',
-  'myApp.learnings'
+  'myApp.learnings',
+  'myApp.edit'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});

@@ -25,4 +25,8 @@ angular.module('myApp.home', ['ngRoute'])
 		location.path('/learnings')
 	}
 
+	scope.toEditSurvey = function(){
+		location.path('/edit')
+	}
+
 }]);

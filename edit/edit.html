@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="h1">Edit Survey</div>
+		</div>
+	</div>
+	<div class="row" ng-repeat="question in survey">
+		<div class="col-xs-12">
+			{{question.question}} <button ng-click="survey.$remove(question)">Delete</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="input-group">
+				
+				<input type="text" class="form-control" placeholder="New Survey Question" ng-model="newQuestion">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-primary" ng-click="addQuestion(newQuestion)">Add</button>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-success" ng-click="goHome()">Save</button>
+	</div>
+</div>

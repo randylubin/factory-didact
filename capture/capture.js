@@ -15,6 +15,11 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	scope.smallPhoto = null;
 	scope.userName = location.search().user
 
+	if (!location.search().user) {
+		var random = Math.floor(Math.random() * 1000000)
+		location.search('user', random);
+	}
+
 	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/capturedData");
 	//scope.userData.capturedFeedback = $firebaseArray(refActuals);
 
@@ -22,6 +27,9 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	  // synchronize the object with a three-way data binding
 	  // click on `index.html` above to see it used in the DOM!
 	syncObject.$bindTo(scope, "syncedData");
+
+	var refSurvey = new Firebase("https://didact.firebaseio.com/survey/");
+	scope.surveyQuestions = $firebaseArray(refSurvey);
 
 	scope.feedback = {};
 
@@ -134,6 +142,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 
 	scope.postData = function(){
 		scope.syncedData.description = location.search().user;
+		scope.syncedData.observer = location.search().observer;
 		scope.userData.clear();
 		location.path('/home')
 	}
