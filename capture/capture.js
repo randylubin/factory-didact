@@ -105,7 +105,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 			scope.saveFeedback();
 			scope.$apply();
 		});
-	}
+	};
 
 	scope.takePhoto = function(){
 		var photo = document.getElementById('capturePhoto');

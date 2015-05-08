@@ -8,8 +8,19 @@
     <div class="col-xs-12">
       <ul>
         <li ng-repeat="feedback in syncedData.feedback">
-          {{feedback.feedback}}
-          <img class="media-object" ng-show="feedback.photo" src="{{feedback.photo}}" ng-cloak>
+          <div ng-show="!feedback.edit" ng-click="feedback.edit = !feedback.edit">
+            {{feedback.feedback}}
+            <img class="media-object" ng-show="feedback.photo" src="{{feedback.photo}}" ng-cloak>
+          </div>
+          <div ng-show="feedback.edit">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="New Survey Question" ng-model="feedback.feedback" ui-keypress="{13:'feedback.edit = !feedback.edit'}">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" ng-click="feedback.edit = !feedback.edit">Save</button>
+              </span>
+            </div>
+          </div>
+
         </li>
       </ul>
     </div>

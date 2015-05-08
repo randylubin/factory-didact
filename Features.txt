@@ -1,8 +1,8 @@
 Features
 
--1) Page back on certain pages
-2) Editable Past Feedback
-3) Tags (via key shortcut and other)
-4) Image rotation
-5) Keyboard in way of photo
-6) cached version for no wifi
++1) Page back on certain pages
++) Editable Past Feedback
+x3) Tags (via key shortcut and other)
+x4) Image rotation
+x5) Keyboard in way of photo
+x6) cached version for no wifi
