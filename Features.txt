@@ -1,6 +1,6 @@
 Features
 
-1) Page back on certain pages
+-1) Page back on certain pages
 2) Editable Past Feedback
 3) Tags (via key shortcut and other)
 4) Image rotation

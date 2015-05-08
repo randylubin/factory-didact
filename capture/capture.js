@@ -14,7 +14,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	scope.syncedData = {};
 	scope.smallPhoto = null;
   location.replace();
-	scope.userName = location.search().user
+	scope.userName = location.search().user;
 	scope.syncedData.description = location.search().user;
 
 	if (!location.search().observer) {
@@ -22,7 +22,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	}
 
 	if (!location.search().user) {
-		var random = Math.floor(Math.random() * 1000000)
+		var random = Math.floor(Math.random() * 1000000);
 		location.search('user', random);
 	}
 
@@ -56,7 +56,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 			name: 'Other',
 			selected: false
 		}
-	]
+	];
 
 	if (!scope.userData.capturedFeedback) {
 		scope.userData.capturedFeedback = []
@@ -93,8 +93,8 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		    ctx = canvas.getContext('2d');
 		    canvas.width = scaledWidth;
 		    canvas.height = scaledHeight;
-		    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-		    ctx.rotate(90);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
 		    return cb(canvas.toDataURL());
 		  };
 		  return img.src = URL.createObjectURL(imageSource);
