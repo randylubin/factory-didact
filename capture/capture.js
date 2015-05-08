@@ -13,6 +13,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	scope.userData = UserData;
 	scope.syncedData = {};
 	scope.smallPhoto = null;
+  location.replace();
 	scope.userName = location.search().user
 	scope.syncedData.description = location.search().user;
 
@@ -98,7 +99,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		  };
 		  return img.src = URL.createObjectURL(imageSource);
 		};
-		
+
 		resizeImage(photo, function(image){
 			scope.smallPhoto = image;
 			scope.saveFeedback();
@@ -116,7 +117,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		var photo = scope.smallPhoto;
 
 		if (text || photo) {
-			
+
 			var startTime = new Date();
 
 			if (!scope.syncedData.feedback) {

@@ -11,13 +11,13 @@
           {{feedback.feedback}}
           <img class="media-object" ng-show="feedback.photo" src="{{feedback.photo}}" ng-cloak>
         </li>
-      </ul>  
+      </ul>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <label>Feedback</label>
-      <textarea class="form-control" rows="5" ng-model="feedback.text" ui-keypress="{13:'saveFeedback()'}"></textarea> 
+      <textarea class="form-control" rows="5" ng-model="feedback.text" ui-keypress="{13:'saveFeedback()'}"></textarea>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
   <div class="row">
     <div class="col-xs-12">
       <span ng-repeat="tag in tags">
-        <button class="btn btn-default" ng-class="{'btn-primary': tag.selected}" ng-click="tag.selected = !tag.selected">{{tag.name}}</button>  
+        <button class="btn btn-default" ng-class="{'btn-primary': tag.selected}" ng-click="tag.selected = !tag.selected">{{tag.name}}</button>
       </span>
     </div>
   </div>-->
@@ -45,7 +45,7 @@
         <div class="media-right media-middle">
           <img src="{{smallPhoto}}" class="media-object" ng-show="smallPhoto" alt="">
         </div>
-      </div>  
+      </div>
     </div>
     <div class="col-xs-6">
       <div class="text-right">
@@ -55,7 +55,7 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-     
+
     </div>
   </div>
 
@@ -85,4 +85,3 @@
     </div>
   </div>
 </div>
-
