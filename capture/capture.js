@@ -142,15 +142,20 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 				tag.selected = false;
 		})
 		scope.smallPhoto = null;
-		scope.syncedData.observer = location.search().observer;
-
+		if (!scope.syncedData.observer) {
+			scope.syncedData.observer = location.search().observer;
+		}
 	}
 
 	scope.postData = function(){
 		scope.syncedData.description = location.search().user;
-		scope.syncedData.observer = location.search().observer;
+
+		if (!scope.syncedData.observer) {
+			scope.syncedData.observer = location.search().observer;
+		}
+
 		scope.userData.clear();
-		location.path('/home')
+		location.path('/learnings')
 	}
 
 }]);

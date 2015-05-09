@@ -31,22 +31,26 @@
 		      <p>This'll just take one moment ...</p>
 		    </div>
 
-			<div ng-repeat="learning in learnings  | orderBy:'-capturedData.dateLastEdited'" ng-if="learning.capturedData.observer">
-				<h1>User: {{learning.capturedData.name}} {{learning.capturedData["User's Name"]}} <small ng-click="goToUser(learning.capturedData.description)">edit</small></h1>
-				<h2>Observer: {{learning.capturedData.observer}}</h2>
-				<p ng-show="learning.capturedData.rating">Rating: {{learning.capturedData.rating}}</p>
-				<ul>
-					<li ng-repeat="(key,val)  in learning.capturedData" ng-if="!(key === 'feedback' || key === 'User\'s Name' || key === 'name' || key === 'observer' || key === 'description' || key === 'dateLastEdited')">{{key}}: {{val}}</li>
-				</ul>
-				<h3 ng-if="learning.capturedData.feedback">Actuals:</h3>
-				<ul>
-					<li class="media" ng-repeat="feedback in learning.capturedData.feedback">						
-						{{feedback.feedback}}
-						<div><img ng-show="feedback.photo" class="media-object" src="{{feedback.photo}}"></div>
-						
+		  <table class = "table table-striped table-hover" style = "margin-top: 20px">
+		  	<thead>
+		  		<tr>
+		  			<td><b>User</b></td>
+		  			<td><b>Observer</b></td>
+		  			<td><b>Rating</b></td>
+		  		</tr>
+		  	</thead>
+		  	<tbody>
+					<tr ng-repeat="learning in learnings | orderBy:'-capturedData.dateLastEdited'" ng-if="learning.capturedData.observer">
+						<td>{{learning.capturedData.name}} {{learning.capturedData["User's Name"]}}</td>
+						<td>{{learning.capturedData.observer}}</td>
+						<td>{{learning.capturedData['Product Rating']}}</td>
 
-					</li>	
-				</ul>
+						<td><button class = "btn btn-default" ng-click="goToUser(learning.capturedData.description)">edit</button></td>
+						<!--<td><button class = "btn btn-default" ng-click="learning.$remove()">delete</button></td>-->
+
+					</tr>
+				</tbody>
+			</table>
 			</div>
 		</div>
 	</div>

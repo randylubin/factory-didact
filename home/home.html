@@ -1,11 +1,8 @@
 <div class="container">
+
 	<div class="row">
 		<div class="col-xs-12">
-			<h1>Didact <span ng-show="observerName"> - {{observerName}}'s Notes</span></h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
+			<h2>Create new user</h2>
 			<div class="form-group">
 		        <label>Observer's Name</label>
 		        <input type="text" class="form-control" id="" placeholder="Your Name" ng-model="observerName">
@@ -14,9 +11,7 @@
 		        <label for="exampleInputEmail1">User's Description</label>
 		        <input type="text" class="form-control" id="" placeholder="User's Name" ng-model="userName">
 		      </div>
-			<div class="btn btn-primary" ng-click="newUser()">New User</div>
-			<div class="btn btn-success" ng-click="toLearnings()">All Learnings</div>
-			<div class="btn btn-default" ng-click="toEditSurvey()">Edit Survey</div>
+			<div class="btn btn-primary" ng-click="newUser()">Create</div>
 		</div>
 	</div>
 </div>
