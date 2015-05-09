@@ -9,29 +9,22 @@
 
 	<div class="row">
 		<div class="col-xs-12">User's Name <small>(required)</small></div>
+		<div class="col-xs-12">Product Rating <small>(required)</small></div>
 	</div>
 
-	<div class="row" ng-repeat="question in survey" ng-if="!(question.question === 'User\'s Name')">
+	<div class="row" ng-repeat="question in survey" ng-if="!(question.question === 'User\'s Name' || question.question === 'Product Rating')">
 		<div class="col-xs-12">
 			{{question.question}} <button class="btn btn-default btn-sm" ng-click="survey.$remove(question)">Delete</button>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-xs-12 col-md-6">
 			<div class="input-group">
-				
 				<input type="text" class="form-control" placeholder="New Survey Question" ng-model="newQuestion">
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-primary" ng-click="addQuestion(newQuestion)">Add</button>
 				</span>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-		  <div class="text-right">
-		    <button class="btn btn-success" ng-click="goHome()">Save</button>
-		  </div>
 		</div>
 	</div>
 </div>

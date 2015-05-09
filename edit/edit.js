@@ -20,12 +20,8 @@ angular.module('myApp.edit', ['ngRoute'])
 	scope.addQuestion = function(questionName){
 		scope.survey.$add(
 			{question: questionName}
-		)
+		);
 		scope.newQuestion = null;
-	}
-
-	scope.goHome = function(){
-		location.path('/home')
-	}
+	};
 
 }]);
