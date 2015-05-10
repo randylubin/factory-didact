@@ -12,7 +12,7 @@ angular.module('myApp.home', ['ngRoute'])
 .controller('HomeCtrl', ['$scope', '$location', 'UserData', function(scope, location, UserData) {
 	scope.userData = UserData;
 	scope.observerName = location.search().observer;
-
+  location.replace();
 	location.search('user', null)
 
 	scope.newUser = function(){
