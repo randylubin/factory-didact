@@ -23,11 +23,17 @@
     <nav class = "navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a href = "/#/home" class="navbar-brand">Didact</a>
         </div>
-        <div class = "collapse navbar-collapse">
+        <div class = "collapse navbar-collapse" id="navbar">
           <ul class = "nav navbar-nav">
-            <li><a href = "/#/learnings" ng-click="toLearnings()">Learnings</a></li>
+            <li><a href = "/#/learnings" ng-click="toLearnings()" class="active">Learnings</a></li>
             <li><a href = "/#/edit">Edit Survey</a></li>
           </ul>
         </div>
@@ -35,7 +41,7 @@
     </div>
 
 
-    <div ng-view style="margin-top: 70px;"></div>
+    <div ng-view style="padding-top: 70px;"></div>
 
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
