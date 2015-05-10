@@ -8,6 +8,7 @@ var mobilecheck = function() {
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'firebase',
+  'ui.bootstrap',
   'ui.keypress',
   'ngRoute',
   'myApp.home',
