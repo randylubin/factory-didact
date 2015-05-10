@@ -9,36 +9,57 @@
   <title>Didact</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
- 
+
   <div class="wrapper">
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ng-view></div>
+    <nav class = "navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle collapsed"
+                  ng-click="isCollapsed = !isCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href = "/#/home" class="navbar-brand">Didact</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" collapse="!isCollapsed">
+          <ul class = "nav navbar-nav">
+            <li><a href = "/#/learnings" ng-click="toLearnings()">Learnings</a></li>
+            <li><a href = "/#/edit">Edit Survey</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div ng-view style="padding-top: 70px;"></div>
 
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
 
-    <script src="firebase.js"></script>
+    <script src="components/firebase.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="angularfire.min.js"></script>
+    <script src="components/ui-utils.min.js"></script>
+    <script src="components/bootstrap-ui-min.js"></script>
+    <script src="components/angularfire.min.js"></script>
     <script src="app.js"></script>
     <script src="home/home.js"></script>
-    <script src="survey/survey.js"></script>
     <script src="capture/capture.js"></script>
-    <script src="services.js"></script>
     <script src="learnings/learnings.js"></script>
+    <script src="edit/edit.js"></script>
   </div>
 </body>
 </html>

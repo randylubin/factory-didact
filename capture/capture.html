@@ -1,48 +1,98 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Actuals</h1>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><span model="survey.userName">{{userName}}</survey> - Actuals</h1>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <label>Feedback</label>
-        <textarea class="form-control" rows="5" ng-model="feedback.text"></textarea> 
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <span ng-repeat="tag in tags">
-          <button class="btn btn-default" ng-class="{'btn-primary': tag.selected}" ng-click="tag.selected = !tag.selected">{{tag.name}}</button>  
-        </span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <button class="btn btn-large btn-default" ng-click="takePhoto()" ng-model="photo">
-          <span class="glyphicon glyphicon-camera upload"></span>
-        </button>
-        <input id="capturePhoto" type="file" accept="image/*;capture=camera" ng-hide="true" ng-model="largePhoto" onchange="angular.element(this).scope().processPhoto()">
-        {{photoFile}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="text-right">
-          <button class="btn btn-success" ng-click="saveFeedback(feedback.text)">Save Feedback</button>
-        </div>
-        <div class="text-right" ng-show="userData.capturedFeedback.length">
-          {{userData.capturedFeedback.length}} lessons learned
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul>
+        <li ng-repeat="feedback in syncedData.feedback">
+          <div ng-show="!feedback.edit" ng-click="feedback.edit = !feedback.edit">
+            {{feedback.feedback}}
+            <img class="media-object" ng-show="feedback.photo" src="{{feedback.photo}}" ng-cloak>
+          </div>
+          <div ng-show="feedback.edit">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="New Survey Question" ng-model="feedback.feedback" ui-keypress="{13:'feedback.edit = !feedback.edit'}">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" ng-click="feedback.edit = !feedback.edit">Save</button>
+              </span>
+            </div>
+          </div>
 
-      </div>
+        </li>
+      </ul>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="text-right" style="margin-top: 10px">
-          <button class="btn btn-default" ng-click="continue()">Continue to Survey</button>
-        </div>
-      </div>
-    </div>  
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <label>Feedback</label>
+      <textarea class="form-control" rows="5" ng-model="feedback.text" ui-keypress="{13:'saveFeedback()'}"></textarea>
+    </div>
   </div>
 
+  <!--<div class="row">
+    <div class="col-xs-12">
+      <label>Tags</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <span ng-repeat="tag in tags">
+        <button class="btn btn-default" ng-class="{'btn-primary': tag.selected}" ng-click="tag.selected = !tag.selected">{{tag.name}}</button>
+      </span>
+    </div>
+  </div>-->
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="media">
+        <div class="media-body">
+          <button class="btn btn-large btn-default" ng-click="takePhoto()" ng-model="photo">
+            <span class="glyphicon glyphicon-camera upload"></span>
+          </button>
+          <input id="capturePhoto" type="file" accept="image/*;capture=camera" ng-hide="true" ng-model="largePhoto" onchange="angular.element(this).scope().processPhoto()">
+        </div>
+        <div class="media-right media-middle">
+          <img src="{{smallPhoto}}" class="media-object" ng-show="smallPhoto" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="text-right">
+        <button class="btn btn-success" ng-click="saveFeedback()">Add Feedback</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label>User's Name</label>
+        <input type="text" class="form-control" ng-model="syncedData['User\'s Name']">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-repeat="question in surveyQuestions" ng-if="!(question.question === 'User\'s Name')">
+        <label>{{question.question}}</label>
+        <input type="text" class="form-control" ng-model="syncedData[question.question]">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="text-right">
+        <button class="btn btn-success" ng-click="postData()">Save User</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,16 +11,31 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 
 .controller('CaptureCtrl', ['$scope', '$location', 'UserData', '$firebaseObject','$firebaseArray', '$document', function(scope, location, UserData, $firebaseObject, $firebaseArray, $document) {
 	scope.userData = UserData;
-	scope.actuals = [];
-	
+	scope.syncedData = {};
+	scope.smallPhoto = null;
+  location.replace();
+	scope.userName = location.search().user;
+	scope.syncedData.description = location.search().user;
 
-	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/actuals");
+	if (!location.search().observer) {
+		location.search('observer', 'Anonymous');
+	}
+
+	if (!location.search().user) {
+		var random = Math.floor(Math.random() * 1000000);
+		location.search('user', random);
+	}
+
+	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/capturedData");
 	//scope.userData.capturedFeedback = $firebaseArray(refActuals);
 
 	var syncObject = $firebaseObject(refActuals);
 	  // synchronize the object with a three-way data binding
 	  // click on `index.html` above to see it used in the DOM!
-	syncObject.$bindTo(scope, "actuals");
+	syncObject.$bindTo(scope, "syncedData");
+
+	var refSurvey = new Firebase("https://didact.firebaseio.com/survey/");
+	scope.surveyQuestions = $firebaseArray(refSurvey);
 
 	scope.feedback = {};
 
@@ -41,7 +56,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 			name: 'Other',
 			selected: false
 		}
-	]
+	];
 
 	if (!scope.userData.capturedFeedback) {
 		scope.userData.capturedFeedback = []
@@ -78,43 +93,69 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		    ctx = canvas.getContext('2d');
 		    canvas.width = scaledWidth;
 		    canvas.height = scaledHeight;
-		    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
 		    return cb(canvas.toDataURL());
 		  };
 		  return img.src = URL.createObjectURL(imageSource);
 		};
-		
+
 		resizeImage(photo, function(image){
 			scope.smallPhoto = image;
+			scope.saveFeedback();
+			scope.$apply();
 		});
-	}
+	};
 
 	scope.takePhoto = function(){
 		var photo = document.getElementById('capturePhoto');
 		photo.click();
 	}
 
-	scope.saveFeedback = function(text){
+	scope.saveFeedback = function(){
+		var text = scope.feedback.text;
+		var photo = scope.smallPhoto;
 
-		var startTime = new Date();
-		scope.userData.capturedFeedback.push({
-			feedback: text,
-			tags: scope.tags,
-			time: startTime.toString(),
-			photo: scope.smallPhoto
+		if (text || photo) {
+
+			var startTime = new Date();
+
+			if (!scope.syncedData.feedback) {
+				scope.syncedData.feedback = [];
+			}
+
+			if (!text && photo){
+				text = "Photo: ";
+			}
+
+			scope.syncedData.feedback.push({
+				feedback: text,
+				//tags: scope.tags,
+				time: startTime.toString(),
+				photo: photo
+			})
+		}
+
+		scope.syncedData.dateLastEdited = new Date().getTime();
+		scope.feedback.text = null
+			angular.forEach(scope.tags, function(tag){
+				tag.selected = false;
 		})
-
-		scope.actuals.feedback = scope.userData.capturedFeedback;
-
-		scope.feedback = {}
-		angular.forEach(scope.tags, function(tag){
-			tag.selected = false;
-		})
-
+		scope.smallPhoto = null;
+		if (!scope.syncedData.observer) {
+			scope.syncedData.observer = location.search().observer;
+		}
 	}
 
-	scope.continue = function(){
-		location.path('/survey')
+	scope.postData = function(){
+		scope.syncedData.description = location.search().user;
+
+		if (!scope.syncedData.observer) {
+			scope.syncedData.observer = location.search().observer;
+		}
+
+		scope.userData.clear();
+		location.path('/learnings')
 	}
 
 }]);

@@ -1,0 +1,8 @@
+Features
+
++1) Page back on certain pages
++) Editable Past Feedback
+x3) Tags (via key shortcut and other)
+x4) Image rotation
+x5) Keyboard in way of photo
+x6) cached version for no wifi
