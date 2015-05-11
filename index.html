@@ -34,9 +34,8 @@
           <a href = "/#/home" class="navbar-brand">Didact</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" collapse="!isCollapsed">
-          <ul class = "nav navbar-nav">
-            <li><a href = "/#/learnings" ng-click="toLearnings()">Learnings</a></li>
-            <li><a href = "/#/edit">Edit Survey</a></li>
+          <ul class = "nav navbar-nav" ng-click="isCollapsed=false">
+            <li><a href = "/#/projects">Projects</a></li>
           </ul>
         </div>
       </div>
@@ -57,6 +56,7 @@
     <script src="components/angularfire.min.js"></script>
     <script src="app.js"></script>
     <script src="home/home.js"></script>
+    <script src="projects/projects.js"></script>
     <script src="capture/capture.js"></script>
     <script src="learnings/learnings.js"></script>
     <script src="edit/edit.js"></script>

@@ -3,13 +3,14 @@
 angular.module('myApp.capture', ['firebase', 'ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/capture', {
+  $routeProvider.when('/projects/:project/capture', {
     templateUrl: 'capture/capture.html',
     controller: 'CaptureCtrl'
   });
 }])
 
-.controller('CaptureCtrl', ['$scope', '$location', 'UserData', '$firebaseObject','$firebaseArray', '$document', function(scope, location, UserData, $firebaseObject, $firebaseArray, $document) {
+.controller('CaptureCtrl', ['$scope', '$location', 'UserData', '$firebaseObject','$firebaseArray', '$document', '$routeParams',
+ function(scope, location, UserData, $firebaseObject, $firebaseArray, $document, $routeParams) {
 	scope.userData = UserData;
 	scope.syncedData = {};
 	scope.smallPhoto = null;
@@ -26,7 +27,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		location.search('user', random);
 	}
 
-	var refActuals = new Firebase("https://didact.firebaseio.com/users/" + location.search().user + "/capturedData");
+	var refActuals = new Firebase("https://didact.firebaseio.com/projects/" + $routeParams.project + "/users/" + location.search().user + "/capturedData");
 	//scope.userData.capturedFeedback = $firebaseArray(refActuals);
 
 	var syncObject = $firebaseObject(refActuals);
@@ -34,7 +35,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 	  // click on `index.html` above to see it used in the DOM!
 	syncObject.$bindTo(scope, "syncedData");
 
-	var refSurvey = new Firebase("https://didact.firebaseio.com/survey/");
+	var refSurvey = new Firebase("https://didact.firebaseio.com/projects/" + $routeParams.project + "/survey/");
 	scope.surveyQuestions = $firebaseArray(refSurvey);
 
 	scope.feedback = {};
@@ -133,19 +134,30 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 				//tags: scope.tags,
 				time: startTime.toString(),
 				photo: photo
-			})
+			});
 		}
 
 		scope.syncedData.dateLastEdited = new Date().getTime();
-		scope.feedback.text = null
+		scope.feedback.text = null;
 			angular.forEach(scope.tags, function(tag){
 				tag.selected = false;
-		})
+		});
 		scope.smallPhoto = null;
 		if (!scope.syncedData.observer) {
 			scope.syncedData.observer = location.search().observer;
 		}
-	}
+	};
+
+  scope.toEditSurvey = function(){
+    scope.syncedData.description = location.search().user;
+
+		if (!scope.syncedData.observer) {
+			scope.syncedData.observer = location.search().observer;
+		}
+
+		scope.userData.clear();
+		location.path("/projects/" + $routeParams.project + '/edit');
+  };
 
 	scope.postData = function(){
 		scope.syncedData.description = location.search().user;
@@ -155,7 +167,7 @@ angular.module('myApp.capture', ['firebase', 'ngRoute'])
 		}
 
 		scope.userData.clear();
-		location.path('/learnings')
-	}
+		location.path("/projects/" + $routeParams.project + '/learnings');
+	};
 
 }]);
