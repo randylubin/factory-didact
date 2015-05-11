@@ -1,5 +1,10 @@
 <div class="container">
 	<div class="row">
+		<button class="btn btn-primary" ng-click="toNewUser()">New User</button>
+		<button class="btn btn-primary" ng-click="toEditSurvey()">Edit Survey</button>
+
+	</div>
+	<div class="row">
 		<div class="col-xs-12">
 			<h1>Learnings</h1>
 			<div id="loading" ng-show="!learnings">
@@ -45,7 +50,7 @@
 						<td>{{learning.capturedData.observer}}</td>
 						<td>{{learning.capturedData['Product Rating']}}</td>
 
-						<td><button class = "btn btn-default" ng-click="goToUser(learning.capturedData.description)">edit</button></td>
+						<td><button class = "btn btn-default" ng-click="goToUser(learning)">edit</button></td>
 						<td><button class = "btn btn-danger" ng-click="learnings.$remove(learning)">delete</button></td>
 
 					</tr>

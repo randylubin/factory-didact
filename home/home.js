@@ -3,30 +3,33 @@
 angular.module('myApp.home', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
+  $routeProvider.when('/projects/:project', {
     templateUrl: 'home/home.html',
     controller: 'HomeCtrl'
   });
 }])
 
-.controller('HomeCtrl', ['$scope', '$location', 'UserData', function(scope, location, UserData) {
+.controller('HomeCtrl', ['$scope', '$location', 'UserData', '$routeParams', '$firebaseArray',
+  function(scope, location, UserData, $routeParams, $firebaseArray) {
+
 	scope.userData = UserData;
 	scope.observerName = location.search().observer;
   location.replace();
-	location.search('user', null)
+	location.search('user', null);
+  scope.projectName = location.search().project
 
 	scope.newUser = function(){
 		location.search('user', scope.userName);
-		location.search('observer', scope.observerName)
-		location.path('/capture')
-	}
+		location.search('observer', scope.observerName);
+		location.path(location.path() + '/capture');
+	};
 
 	scope.toLearnings = function(){
-		location.path('/learnings')
-	}
+		location.path(location.path() + '/learnings');
+	};
 
 	scope.toEditSurvey = function(){
-		location.path('/edit')
-	}
+		location.path(location.path() + '/edit');
+	};
 
 }]);
