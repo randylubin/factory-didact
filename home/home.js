@@ -16,7 +16,7 @@ angular.module('myApp.home', ['ngRoute'])
 	scope.observerName = location.search().observer;
   location.replace();
 	location.search('user', null);
-  scope.projectName = location.search().project
+  scope.projectName = location.search().project;
 
 	scope.newUser = function(){
     scope.userName = scope.userName.replace(/\W/g, '');

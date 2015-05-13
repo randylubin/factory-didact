@@ -5,7 +5,22 @@
 		</div>
 	</div>
 
-	<table class = "table table-striped table-hover" style = "margin-top: 20px" ng-show="learnings !== null">
+	<div class="sk-spinner sk-spinner-circle" ng-if="!projects.length">
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+    <div class="sk-circle11 sk-circle"></div>
+    <div class="sk-circle12 sk-circle"></div>
+  </div>
+
+	<table class = "table table-striped table-hover" style = "margin-top: 20px" ng-show="projects.length">
 		<thead>
 			<tr>
 				<td><b>Project</b></td>
@@ -22,7 +37,7 @@
 		</tbody>
 	</table>
 
-	<div class="row">
+	<div class="row" ng-show="projects.length">
 		<div class="col-xs-12 col-md-6">
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="New Project Name" ng-model="newProject">
