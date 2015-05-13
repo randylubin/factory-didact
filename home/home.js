@@ -19,6 +19,7 @@ angular.module('myApp.home', ['ngRoute'])
   scope.projectName = location.search().project
 
 	scope.newUser = function(){
+    scope.userName = scope.userName.replace(/\W/g, '');
 		location.search('user', scope.userName);
 		location.search('observer', scope.observerName);
 		location.path(location.path() + '/capture');
